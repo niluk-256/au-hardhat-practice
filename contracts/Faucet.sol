@@ -1,16 +1,31 @@
 // SPDX-License-Identifier: MIT
-
-// import "hardhat/console.sol";
 pragma solidity ^0.8.7;
+
 contract Faucet {
+    address payable public owner;
 
-//function to withdraw
-function  withdraw(uint _amount) external payable {
-require( _amount  <= 100000000000000000, "Amount exceeded the limit ");
-  payable(msg.sender).transfer(_amount);
-}
-//function to recieve ETH
-receive() external payable {}
+    constructor() payable {
+        owner = payable(msg.sender);
+    }
 
+    function withdraw(uint256 _amount) public payable {
+        // users can only withdraw .1 ETH at a time, feel free to change this!
+        require(_amount <= 100000000000000000);
+        (bool sent, ) = payable(msg.sender).call{value: _amount}("");
+        require(sent, "Failed to send Ether");
+    }
 
+    function withdrawAll() public onlyOwner {
+        (bool sent, ) = owner.call{value: address(this).balance}("");
+        require(sent, "Failed to send Ether");
+    }
+
+    function destroyFaucet() public onlyOwner {
+        selfdestruct(owner);
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner);
+        _;
+    }
 }

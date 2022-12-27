@@ -3,7 +3,7 @@ const hre = require("hardhat");
 async function main() {
   // const lockedAmount = hre.ethers.utils.parseEther("1");
 
-  const Faucet = await hre.ethers.getContractFactory("Faucet");
+  const Faucet = await hre.ethers.getContractFactory("FaucetBefore");
   const faucet = await Faucet.deploy();
   console.log("deploying.........");
   await faucet.deployed();
