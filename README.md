@@ -12,5 +12,7 @@ npm install / yarn
 
 ```bash
 yarn faucet
+yarn testFaucet
+yarn beWinner
 yarn  modifyvariable
 ```
