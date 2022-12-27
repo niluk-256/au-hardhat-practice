@@ -5,15 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "faucet":"npx hardhat run scripts/faucet.js --network goerli",
-    "beWinner":"npx hardhat run scripts/BeWinner.js --network goerli",
-    "testFaucet":"npx hardhat test test/faucetTest.js"
+    "faucet": "npx hardhat run scripts/faucet.js --network goerli",
+    "beWinner": "npx hardhat run scripts/BeWinner.js --network goerli",
+    "testFaucet": "npx hardhat test test/faucetTest.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.0.3",
+    "ethereum-waffle": "^3.4.4",
     "hardhat": "^2.12.4"
   },
   "devDependencies": {
